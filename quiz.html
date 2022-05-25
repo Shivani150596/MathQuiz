@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="quiz.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <title>Quiz</title>
+</head>
+
+<body>
+
+    <!-- Main Body -->
+
+
+
+    <div class="container p-4 d-flex flex-column justify-content-center">
+
+        <header>
+            <h1 id="header">
+                Maths Quiz Game :)
+            </h1>
+        </header>
+
+        <div id='quiz-box' class="d-flex p-2 justify-content-around">
+
+            <div class="box" id='quiz-box1'>
+                <div class="d-flex flex-column p-4 justify-content-center">
+                    <div>
+
+                        <h1 id="timer"></h1>
+                    </div>
+                    <div id="startquizbuton" class="selectedCategories" id="userSelectedVariable">
+                        <form class="needs-validation" novalidate>
+                            <div class="d-flex flex-column form-row">
+
+                                <label>Max Operand Value </label>
+                                <input type="number" class="form-control" id="enteredoperandValue"
+                                    placeholder="Max upto 15" max="15" min="9">
+                            </div>
+
+                            <div class="d-flex flex-column">
+
+                                <label>Number of Questions you want? </label>
+                                <input type="number" class="form-control" id="enteredNumQuiz" placeholder="Max upto 20"
+                                    max="20" min="1">
+                            </div>
+
+                            <label>What all operators you want in your quiz? </label>
+                            <div class="d-flex flex-row" id="">
+                                <label class="checkbox-container mx-2" for="addition">Add
+                                    <input type="checkbox" value="+" id="addition">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label class="checkbox-container mx-2" for="subtraction">Sub
+                                    <input type="checkbox" value="-" id="subtraction">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label class="checkbox-container mx-2" for="division">Divide
+                                    <input type="checkbox" value="/" id="division">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label class="checkbox-container mx-2" for="multiplication">Multiply
+                                    <input type="checkbox" value="*" id="multiplication">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="d-flex flex-column p-2 justify-content-around align-items-center">
+                                <div>
+
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="timer()">Start Quiz
+                                        1</button>
+                                </div>
+                                <div>
+                                    <h6 class="fontSize">* Default : operands(less than 10), 20 quiz question and all
+                                        operators</h6>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+
+                <div class="quizbox" id="quizbox">
+                    <div class="quizSection d-flex flex-row justify-content-center">
+
+                        <div class="operand">
+                            <input type="text" id="operand1" readonly>
+                        </div>
+
+                        <div class="operator">
+                            <input type="text" id="operator" readonly>
+                        </div>
+
+                        <div class="operand">
+                            <input type="text" id="operand2" readonly>
+                        </div>
+
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="ans">
+                            <input type="text" id="userEntered">
+                        </div>
+                        <div class="operand">
+                            <button type="button" class="btn btn-primary btn-sm" onclick="nextClicked()">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box" id='quiz-box2'>
+                <div class="d-flex flex-column p-4 justify-content-center">
+                    <div>
+
+                        <h1 id="timer2"></h1>
+                    </div>
+                    <div id="startquizbuton2" class="selectedCategories" id="userSelectedVariable2">
+                        <form class="needs-validation" novalidate>
+                            <div class="d-flex flex-column form-row">
+
+                                <label>Max Operand Value </label>
+                                <input type="number" class="form-control" id="enteredoperandValue2"
+                                    placeholder="Max upto 15" max="15" min="9">
+                            </div>
+
+                            <div class="d-flex flex-column">
+
+                                <label>Number of Questions you want? </label>
+                                <input type="number" class="form-control" id="enteredNumQuiz2" placeholder="Max upto 20"
+                                    max="20" min="1">
+                            </div>
+
+                            <label>What all operators you want in your quiz? </label>
+                            <div class="d-flex flex-row" id="secondQuizoperators">
+                                <label class="checkbox-container mx-2" for="addition2">Add
+                                    <input type="checkbox" value="+" id="addition2">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label class="checkbox-container mx-2" for="subtraction2">Sub
+                                    <input type="checkbox" value="-" id="subtraction2">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label class="checkbox-container mx-2" for="division2">Divide
+                                    <input type="checkbox" value="/" id="division2">
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label class="checkbox-container mx-2" for="multiplication2">Multiply
+                                    <input type="checkbox" value="*" id="multiplication2">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="d-flex flex-column p-2 justify-content-around align-items-center">
+                                <div>
+
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="timer2()">Start Quiz
+                                        2</button>
+                                </div>
+                                <div>
+                                    <h6 class="fontSize">* Default : operands(less than 10), 20 quiz question and all
+                                        operators</h6>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+
+                <div class="quizbox" id="quizbox2">
+                    <div class="quizSection d-flex flex-row justify-content-center">
+
+                        <div class="operand">
+                            <input type="text" id="operd2quiz1" readonly>
+                        </div>
+
+                        <div class="operator">
+                            <input type="text" id="operd2quiz" readonly>
+                        </div>
+
+                        <div class="operand">
+                            <input type="text" id="operd2quiz2" readonly>
+                        </div>
+
+                    </div>
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="ans">
+                            <input type="text" id="userEntered2">
+                        </div>
+                        <div class="operand">
+                            <button type="button" class="btn btn-primary btn-sm" onclick="nextClicked2()">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id='score-board-container' class="d-flex flex-row p-2 justify-content-around">
+            <div class="score-board">
+                <h1> Quiz 1</h1>
+                <ol id="scoreboard1">
+
+                </ol>
+                <div>
+                    <h4 id="score1"></h4>
+                </div>
+            </div>
+            <div class="score-board">
+                <h1> Quiz 2</h1>
+                <ol id="scoreboard2">
+
+                </ol>
+                <div>
+                    <h4 id="score2"></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS File -->
+    <script src="quiz.js"></script>
+
+</body>
+
+</html>
